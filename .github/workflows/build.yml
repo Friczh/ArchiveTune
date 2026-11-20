@@ -212,16 +212,4 @@ jobs:
           name: ${{ steps.variant.outputs.apk_name }}
           path: ${{ steps.release_dir.outputs.release_dir }}/out/${{ steps.variant.outputs.apk_name }}
           if-no-files-found: error
-          retention-days: 14
-
-  notifyUser:
-    name: Notify referenced issues
-    if: github.ref == 'refs/heads/dev' && github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]'
-    needs:
-      - build
-    uses: ./.github/workflows/notify_user.yml
-    permissions:
-      issues: write
-      pull-requests: write
-      contents: read
-    secrets: inherit
+          retention-days: 3
